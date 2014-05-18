@@ -5,3 +5,5 @@ dist
 bower_components
 tests
 .grunt
+.DS_Store
+*/.DS_Store

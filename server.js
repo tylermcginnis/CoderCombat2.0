@@ -4,7 +4,7 @@ var app = express();
 var path = require('path')
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server, { log: false });
-var gameLogic = require('./assets/gameLogic');
+var gameLogic = require('./server-assets/gameLogic');
 
 var port = process.env.PORT || 3000;
 server.listen(port);
