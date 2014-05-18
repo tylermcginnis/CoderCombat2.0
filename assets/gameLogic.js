@@ -42,7 +42,6 @@ module.exports.leaveRoom = function(skt){
     skt.broadcast.to(room).emit('leftRoom', {text: userName + ' left room '+ room});
     skt.leave(room);
     delete rooms[room];
-    debugger;
     getRoom(opponentSocket);
   }
 }
