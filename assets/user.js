@@ -1,2 +1,0 @@
-var rooms = {};
-var users = {};
