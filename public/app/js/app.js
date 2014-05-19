@@ -1,2 +1,2 @@
-var app = angular.module('CC', []);
+var app = angular.module('CC', ['ui.ace']);
 

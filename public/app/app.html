@@ -25,14 +25,30 @@
     <div class="container-fluid">
       <div class="row">
         <div class="players-editor pull-left">
-          
+          <div ui-ace="{
+              useWrapMode : true,
+              showGutter: false,
+              theme:'eclipse',
+              mode: 'javascript',
+              onLoad: userEditorLoaded,
+              onChange: useEditorChanged
+            }">
+          </div>
         </div>
         <div class="right-side pull-right">
           <div class="question-container">
   
           </div>
           <div class="opponents-editor">
-
+            <div ui-ace="{
+                useWrapMode : true,
+                showGutter: false,
+                theme:'eclipse',
+                mode: 'javascript',
+                onLoad: opponentEditorLoaded,
+                onChange: opponentEditorChanged
+              }">
+            </div>
           </div>
         </div>
 
@@ -47,7 +63,7 @@
     <script src="/bower_components/angular-ui-ace/ui-ace.js"></script>
     <script src="js/app.js"></script>
     <script src="js/appController.js"></script>
-    <script src="js/appFactory.js"></script>
+    <script src="js/socketFactory.js"></script>
   </body>
 </html>
 
