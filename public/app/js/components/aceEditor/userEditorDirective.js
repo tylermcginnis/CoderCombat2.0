@@ -13,7 +13,7 @@ app.directive('userEditor', function(socket, $rootScope){
 
       var editorText = session.getValue();
 
-      ele.html(scope.question)
+      ele.html(scope.data.theFn)
     }
   }
 })

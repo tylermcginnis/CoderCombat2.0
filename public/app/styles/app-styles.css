@@ -69,8 +69,6 @@ html, body {
 .ace_print-margin {
   display: none;
 }
-
 .ace-eclipse .ace_marker-layer .ace_active-line {
   background: transparent !important;
-}
 }

@@ -1,5 +1,6 @@
 var app = angular.module('CC');
 app.controller('mainCtrl', function($scope, socket){
+  $scope.data = {};
 
   socket.on('joinedRoom', function(obj){
     console.log(obj.text)
@@ -11,7 +12,9 @@ app.controller('mainCtrl', function($scope, socket){
     alert("Someone left the room!");
   });
 
-  //This needs to be set ASAP
-  //Maybe get all questions, save to array, then select at random?
-  $scope.question = 'meh'
+  //Make a request and save the questions data to an array on a service.
+  $scope.data.question = 'eventually this will be an array of questions';
+  $scope.data.theFn = 'Eventually this will be the empty function'
+
+
 })

@@ -14,7 +14,7 @@ app.directive('opponentEditor', function(socket) {
 
       var editorText = session.getValue();
 
-      ele.html(scope.question);
+      ele.html(scope.data.theFn);
     }
   }
 });
