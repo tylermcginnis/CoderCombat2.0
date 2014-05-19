@@ -1,8 +1,9 @@
 var app = angular.module('CC');
 
-app.directive('userEditor', function(socket, $rootScope){
+app.directive('userEditor', function(socket){
   return {
     restrict: 'E',
+    template: "<p id='uEditor'></p>",
     link: function(scope, ele, attr) {  
       var editor = ace.edit("uEditor");
       editor.setTheme("ace/theme/eclipse");
@@ -11,11 +12,15 @@ app.directive('userEditor', function(socket, $rootScope){
       session.setUseWrapMode(true);
       session.setMode("ace/mode/javascript");
 
-      var editorText = session.getValue();
+      editor.on('change', function(changeObj){
+        var currentText = session.getValue();
+      });
+
+      scope.editor = editor;
 
       scope.chainedPromise.then(function(){
-        ele.html(scope.data.fn);
+        session.setValue(scope.data.fn);
       });
     }
   }
-})
+});

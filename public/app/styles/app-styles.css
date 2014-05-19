@@ -61,14 +61,17 @@ html, body {
   border-top: 2px solid #e7e7e7;
 }
 
+
+/* Ace Editor Overrides */
 .ace_editor {
   height: 100%;
-}
-
-/* Ace Editor Overrides */ 
+} 
 .ace_print-margin {
   display: none;
 }
 .ace-eclipse .ace_marker-layer .ace_active-line {
   background: transparent !important;
+}
+.oEditor .ace_content {
+  cursor: none;
 }

@@ -1,9 +1,2 @@
-var app = angular.module('CC', ['ngRoute']);
+var app = angular.module('CC', []);
 
-app.config(function($routeProvider){
-  $routeProvider
-   .when('/', {
-        templateUrl: 'partials/main.html',
-        controller: 'mainCtrl',
-    })
-});
