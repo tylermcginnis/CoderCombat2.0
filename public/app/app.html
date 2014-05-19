@@ -4,45 +4,8 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/app-styles.css">
   </head>
-  <body ng-controller="mainCtrl">
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/"><img src="images/coder-combat-small.png"></a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-toggle="modal" data-target="#sign-up-modal">Sign-Up</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-          </ul>
-        </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="players-editor pull-left">
-          <user-editor>
-            <span id="uEditor"></span>
-          </user-editor>
-        </div>
-        <div class="right-side pull-right">
-          <div class="question-container">
-            {{data.question}}
-          </div>
-          <div class="opponents-editor">
-            <opponent-editor>
-              <span id="oEditor"></span>
-            </opponent-editor>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
+  <body>
+    <ng-view></ng-view>
     <script src="/socket.io/socket.io.js"></script>
     <script src="//cdn.jsdelivr.net/ace/1.1.3/min/ace.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
@@ -53,6 +16,7 @@
     <script src="js/components/socket/socketFactory.js"></script>
     <script src="js/components/aceEditor/userEditorDirective.js"></script>
     <script src="js/components/aceEditor/opponentEditorDirective.js"></script>
+    <script src="js/components/aceEditor/initiateEditor.js"></script>
   </body>
 </html>
 

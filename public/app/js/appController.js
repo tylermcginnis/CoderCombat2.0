@@ -1,6 +1,14 @@
 var app = angular.module('CC');
-app.controller('mainCtrl', function($scope, socket){
-  $scope.data = {};
+app.controller('mainCtrl', function($scope, socket, initiateEditor){
+  var newPromise = initiateEditor.makeRequest()
+    .then(function(data){
+      $scope.data = {};
+      $scope.data.question = data.question;
+      $scope.data.fn = data.fn;
+    }, function(){
+      console.log('An error occured in appController');
+    });
+    $scope.chainedPromise = newPromise;
 
   socket.on('joinedRoom', function(obj){
     console.log(obj.text)
@@ -11,10 +19,4 @@ app.controller('mainCtrl', function($scope, socket){
     console.log(obj.text);
     alert("Someone left the room!");
   });
-
-  //Make a request and save the questions data to an array on a service.
-  $scope.data.question = 'eventually this will be an array of questions';
-  $scope.data.theFn = 'Eventually this will be the empty function'
-
-
 })

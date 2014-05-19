@@ -13,7 +13,9 @@ app.directive('userEditor', function(socket, $rootScope){
 
       var editorText = session.getValue();
 
-      ele.html(scope.data.theFn)
+      scope.chainedPromise.then(function(){
+        ele.html(scope.data.fn);
+      });
     }
   }
 })
