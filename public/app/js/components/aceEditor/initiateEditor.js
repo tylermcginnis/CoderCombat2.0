@@ -1,7 +1,6 @@
 var app = angular.module('CC');
 
 app.service('initiateEditor', function($http, $q){
-  var data = [{question: 'no show', fn: 'no show too'}];
   var tempArr = [
     {question: 'This is the first question', fn: 'var firstQuestion = function(){}'},
     {question: 'This is the sec question', fn: 'var secondQuestion = function(){}'},
@@ -13,15 +12,16 @@ app.service('initiateEditor', function($http, $q){
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  this.getRandomQuestion = function(){
-    var randomInt = getRandomInt(0, data.length -1);
-    return data[randomInt];
-  };
-
   var getInitialQuestion = function(data){
     var randomInt = getRandomInt(0, data.length);
     return data[randomInt];
   }
+
+  this.getRandomQuestion = function(){
+    var randomInt = getRandomInt(0, data.length -1);
+    return tempArr[randomInt]; //delete this line once data is real
+    return data[randomInt];
+  };
 
   this.makeRequest = function(){
     var d = $q.defer();
@@ -29,11 +29,11 @@ app.service('initiateEditor', function($http, $q){
       method: 'GET',
       url: '#'
     }).success(function(data){
-      //eventually change tempArr to data
-      d.resolve(tempArr[0]);
+      //change and remove tempArr once actual data is retrieved.
+      var randomQuestion = getInitialQuestion(tempArr);
+      d.resolve(randomQuestion);
     }).error(function(){
-      //eventually change this too
-      d.resolve(tempArr[1])
+      d.resolve('There was an error in initiateEditor');
     });
     return d.promise;
   }

@@ -12,8 +12,9 @@ app.directive('userEditor', function(socket){
       session.setUseWrapMode(true);
       session.setMode("ace/mode/javascript");
 
-      editor.on('change', function(changeObj){
+      editor.on('change', function(){
         var currentText = session.getValue();
+        socket.emit('userChangedEditor', currentText);
       });
 
       scope.editor = editor;

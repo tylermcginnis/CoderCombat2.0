@@ -6,9 +6,9 @@ app.directive('opponentEditor', function(socket) {
     template: "<p id='oEditor' class='oEditor'></p>",
     link: function(scope, ele, attr) {  
       var editor = ace.edit("oEditor");
-      var userEditor = ace.edit('uEditor');
       editor.setTheme("ace/theme/eclipse");
       editor.setReadOnly(true);
+      editor.renderer.setShowGutter(false);
 
       var session = editor.getSession();
       session.setUseWrapMode(true);
@@ -19,11 +19,11 @@ app.directive('opponentEditor', function(socket) {
       });
 
       editor.on('focus', function(){
-        userEditor.focus();
-        alert('No one likes a cheater');
-        editor.clearSelection();
-        editor.moveCursorTo(5,10);
-        userEditor.focus();
+
+      });
+
+      socket.on('updateText', function (obj) {
+        session.setValue(obj);
       });
 
       scope.oEditor = editor;

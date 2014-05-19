@@ -8,9 +8,9 @@ var joinRoom = function(skt, rm){
   users[skt.id].room = rm;
   users[skt.id].socket = skt;
   rooms[rm].length > 1 && skt.broadcast.to(rm).emit('joinedRoom', {text: users[skt.id].name + ' joined room ' + users[skt.id].room});
-}
+};
 
-var getRoom = function(skt){
+var placeInRoom = function(skt){
   var keys = Object.keys(rooms);
   var howManyRooms = keys.length;
   var lastRoomNumber = howManyRooms ? parseInt(keys[keys.length - 1], 10) : 0; 
@@ -20,13 +20,13 @@ var getRoom = function(skt){
   } else {
     joinRoom(skt, lastRoomNumber + 1)
   }
-}
+};
 
 module.exports.initUser = function(socket, name){
   users[socket.id] = {};
   users[socket.id].name = name;
-  getRoom(socket);
-}
+  placeInRoom(socket);
+};
 
 module.exports.leaveRoom = function(skt){
   var room = users[skt.id].room;
@@ -42,6 +42,11 @@ module.exports.leaveRoom = function(skt){
     skt.broadcast.to(room).emit('leftRoom', {text: userName + ' left room '+ room});
     skt.leave(room);
     delete rooms[room];
-    getRoom(opponentSocket);
+    placeInRoom(opponentSocket);
   }
+};
+
+module.exports.sendTextUpdate = function(skt, newText){
+  var room = users[skt.id].room;
+  skt.broadcast.to(room).emit('updateText', newText);
 }

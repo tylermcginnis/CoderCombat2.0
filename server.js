@@ -12,11 +12,13 @@ server.listen(port);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.sockets.on('connection', function (socket) {
-  console.log('Socket Connected');
   gameLogic.initUser(socket, 'Tyler');
 
+  socket.on('userChangedEditor', function(newText){
+    gameLogic.sendTextUpdate(socket, newText);
+  });
+
   socket.on('disconnect', function(){
-    console.log('Socket Disconnected');
     gameLogic.leaveRoom(socket);
   })
 });
