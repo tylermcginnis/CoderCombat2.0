@@ -1,19 +1,5 @@
 var app = angular.module('CC');
 app.controller('mainCtrl', function($scope, socket){
-  
-  $scope.userEditorLoaded = function(userEditor) {
-    var session = userEditor.getSession();
-    session.setValue('The function goes here');
-      userEditor.on('change', function(){
-        var newVal = session.getValue();
-        console.log(newVal);
-      });
-  };
-
-  $scope.opponentEditorLoaded = function(opponentEditor){
-    opponentEditor.setReadOnly(true);
-  }
-
 
   socket.on('joinedRoom', function(obj){
     console.log(obj.text)
@@ -24,4 +10,8 @@ app.controller('mainCtrl', function($scope, socket){
     console.log(obj.text);
     alert("Someone left the room!");
   });
+
+  //This needs to be set ASAP
+  //Maybe get all questions, save to array, then select at random?
+  $scope.question = 'meh'
 })
