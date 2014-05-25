@@ -18,6 +18,10 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
         socket.emit('userChangedEditor', currentText);
       });
 
+      editor.on('focus', function(){
+        scope.$apply(scope.highlightSubmit = true);
+      })
+
       scope.editor = editor;
 
       socket.on('waitingForOpponent', function(){
@@ -28,6 +32,7 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
       });
 
       socket.on('initializeQuestion', function(randomNum){
+        scope.highlightSubmit = false;
         initiateEditor.setUpEditor(randomNum, scope, session);
       });
 

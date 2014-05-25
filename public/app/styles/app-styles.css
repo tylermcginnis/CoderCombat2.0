@@ -87,6 +87,20 @@ body .modal-content {
   border: 0;
 }
 
+
+/*Overrides Bootstrap*/
+.mute {
+  color: rgba(119, 119, 119, 0.54) !important;
+}
+.not-mute {
+  color: #333 !important;
+  background: #E7E7E7 !important;
+}
+.not-mute:hover{
+  background: #E4E4E4 !important
+}
+
+
 /* Spinner */
 .spinner {
   width: 120px;
