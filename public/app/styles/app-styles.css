@@ -62,6 +62,76 @@ html, body {
   border-top: 2px solid #e7e7e7;
 }
 
+.modal-header {
+  background: #f8f8f8;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-header img {
+  width: 201px;
+  margin: 0 auto;
+}
+.modal-body {
+  text-align: center;
+  font-size: 29px;
+  font-weight: 200;
+}
+
+
+/* Spinner */
+.spinner {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  border-radius: 50%;
+  border: 2px solid #3b9bdb;
+  margin: 10px auto;
+}
+.spinner:after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background: #4f5b63;
+  top: 57px;
+  left: 57px;
+  -ms-transform-origin: 1px 1px;
+  -webkit-transform-origin: 1px 1px;
+  -moz-transform-origin: 1px 1px;
+  transform-origin: 1px 1px;
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -ms-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+.spinner:before {
+  content: "";
+  position: absolute;
+  left: 56px;
+  top: 56px;
+  height: 5px;
+  width: 5px;
+  background: #4f5b63;
+  border-radius: 50%;
+  -webkit-animation: expand 1s infinite linear alternate;
+  -moz-animation: expand 1s infinite linear alternate;
+  -ms-animation: expand 1s infinite linear alternate;
+  animation: expand 1s infinite linear alternate;
+};
+@keyframes spin {from {transform: rotate(0);}to {transform: rotate(360deg);}}
+@keyframes expand {from {transform: scale(1);}to {transform: scale(1.5);}}
+@-moz-keyframes spin {from {-moz-transform: rotate(0);}to {-moz-transform: rotate(360deg);}}
+@-moz-keyframes expand {from {-moz-transform: scale(1);}to {-moz-transform: scale(1.5);}}
+@-webkit-keyframes spin {from {-webkit-transform: rotate(0);}to {-webkit-transform: rotate(360deg);}}
+@-webkit-keyframes expand {from {-webkit-transform: scale(1);}to {-webkit-transform: scale(1.5);}}
+@-ms-keyframes spin {from {-ms-transform: rotate(0);}to {-webkit-transform: rotate(360deg);}}
+@-ms-keyframes expand {from {-ms-transform: scale(1);}to {-webkit-transform: scale(1.5);}}
+
 
 /* Ace Editor Overrides */
 .ace_editor {

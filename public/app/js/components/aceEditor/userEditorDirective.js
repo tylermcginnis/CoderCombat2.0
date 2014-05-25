@@ -1,6 +1,6 @@
 var app = angular.module('CC');
 
-app.directive('userEditor', function(socket, initiateEditor){
+app.directive('userEditor', function(socket, initiateEditor, $modal){
   return {
     restrict: 'E',
     template: "<p id='uEditor'></p>",
@@ -19,6 +19,13 @@ app.directive('userEditor', function(socket, initiateEditor){
       });
 
       scope.editor = editor;
+
+      socket.on('waitingForOpponent', function(){
+        var modalInstance = $modal.open({
+          templateUrl: 'js/components/modals/waitingForOpponent.html',
+          controller: 'mainCtrl'
+        });
+      })
 
       socket.on('initializeQuestion', function(randomNum){
         initiateEditor.setUpEditor(randomNum, scope, session);

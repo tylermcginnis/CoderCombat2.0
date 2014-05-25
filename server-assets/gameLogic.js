@@ -16,7 +16,7 @@ var joinRoom = function(skt, io, rm, questionArrLength){
     io.sockets.in(rm).emit('initializeQuestion', returnRandomInt(0, questionArrLength-1));
     //maybe a 3,2,1 Go! modal here.
   } else {
-    //maybe emit/launch waiting for opponent event/modal
+    io.sockets.socket(skt.id).emit('waitingForOpponent');
   }
 };
 

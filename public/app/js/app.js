@@ -1,4 +1,4 @@
-var app = angular.module('CC', []);
+var app = angular.module('CC', ['ui.bootstrap']);
 
 app.run(function(initiateEditor){
   initiateEditor.getQuestions()

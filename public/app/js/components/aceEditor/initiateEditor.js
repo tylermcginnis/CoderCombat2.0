@@ -17,7 +17,6 @@ app.service('initiateEditor', function($http, $q){
       method: 'GET',
       url: '/api/questions'
     }).success(function(data){
-      console.log('The data is', data);
       d.resolve(data);
     }).error(function(){
       d.error('There was an error retrieving the questions');
