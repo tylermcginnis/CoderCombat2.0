@@ -1,6 +1,6 @@
 var app = angular.module('CC');
 
-app.directive('userEditor', function(socket){
+app.directive('userEditor', function(socket, initiateEditor){
   return {
     restrict: 'E',
     template: "<p id='uEditor'></p>",
@@ -20,14 +20,9 @@ app.directive('userEditor', function(socket){
 
       scope.editor = editor;
 
-      socket.on('initializeQuestion', function(data){
-        scope.data.question = data.question;
-        session.setValue(data.fn);
+      socket.on('initializeQuestion', function(randomNum){
+        initiateEditor.setUpEditor(randomNum, scope, session);
       });
-
-      // scope.chainedPromise.then(function(){
-      //   session.setValue(scope.data.fn);
-      // });
     }
   }
 });

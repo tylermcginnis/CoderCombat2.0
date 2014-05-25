@@ -1,6 +1,6 @@
 var app = angular.module('CC');
 
-app.directive('opponentEditor', function(socket) {
+app.directive('opponentEditor', function(socket, initiateEditor) {
   return {
     restrict: 'E',
     template: "<p id='oEditor' class='oEditor'></p>",
@@ -29,9 +29,8 @@ app.directive('opponentEditor', function(socket) {
 
       scope.oEditor = editor;
 
-      socket.on('initializeQuestion', function(data){
-        scope.data.question = data.question;
-        session.setValue(data.fn);
+      socket.on('initializeQuestion', function(randomNum){
+        initiateEditor.setUpEditor(randomNum, scope, session);
       });
     }
   }

@@ -4,8 +4,8 @@ app.run(function(initiateEditor){
   initiateEditor.getQuestions()
     .then(function(data){
       initiateEditor.setQuestionData(data);
-    }, function(){
-      console.log('There was an error in .run');
+    }, function(data){
+      console.log(data);
     })
 })
 
