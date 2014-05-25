@@ -32,6 +32,10 @@ app.directive('opponentEditor', function(socket, initiateEditor) {
       socket.on('initializeQuestion', function(randomNum){
         initiateEditor.setUpEditor(randomNum, scope, session);
       });
+
+      socket.on('cleanEditor', function(){
+        initiateEditor.clearEditor(scope, session);
+      });
     }
   }
 });

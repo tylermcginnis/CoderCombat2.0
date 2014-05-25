@@ -50,6 +50,7 @@ module.exports.leaveRoom = function(skt){
     var opponentId = rooms[room][0];
     var opponentSocket = users[opponentId].socket;
     skt.broadcast.to(room).emit('leftRoom', {text: userName + ' left room '+ room});
+    skt.broadcast.to(room).emit('cleanEditor');
     skt.leave(room);
     delete rooms[room];
     placeInRoom(opponentSocket);

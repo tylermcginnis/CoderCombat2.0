@@ -30,4 +30,9 @@ app.service('initiateEditor', function($http, $q){
     scope.data.question = questionData.question;
     session.setValue(questionData.fn);
   };
+
+  this.clearEditor = function(scope, session){
+    scope.data = {};
+    session.setValue('');
+  }
 });
