@@ -9,27 +9,29 @@ app.directive('opponentEditor', function(socket) {
       editor.setTheme("ace/theme/eclipse");
       editor.setReadOnly(true);
       editor.renderer.setShowGutter(false);
+      editor.setFontSize(15);
 
       var session = editor.getSession();
       session.setUseWrapMode(true);
       session.setMode("ace/mode/javascript");
 
       editor.on('change', function(changeObj){
-        var currentText = session.getValue();
+        // var currentText = session.getValue();
       });
 
       editor.on('focus', function(){
-
+        
       });
 
-      socket.on('updateText', function (obj) {
-        session.setValue(obj);
+      socket.on('updateText', function (newTxt) {
+        session.setValue(newTxt);
       });
 
       scope.oEditor = editor;
 
-      scope.chainedPromise.then(function(){
-        session.setValue(scope.data.fn);
+      socket.on('initializeQuestion', function(data){
+        scope.data.question = data.question;
+        session.setValue(data.fn);
       });
     }
   }

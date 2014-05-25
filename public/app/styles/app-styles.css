@@ -52,6 +52,8 @@ html, body {
 .question-container {
   height: 50%;
   width: 100%;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 22px;
 }
 
 .opponents-editor {
@@ -64,7 +66,7 @@ html, body {
 /* Ace Editor Overrides */
 .ace_editor {
   height: 100%;
-} 
+}
 .ace_print-margin {
   display: none;
 }
@@ -72,7 +74,7 @@ html, body {
   background: transparent !important;
 }
 .oEditor .ace_content {
-  cursor: none;
+  cursor: not-allowed;
 }
 body .ace-eclipse .ace_gutter {
   background: #f8f8f8;

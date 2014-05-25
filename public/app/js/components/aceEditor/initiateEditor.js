@@ -2,19 +2,14 @@ var app = angular.module('CC');
 
 app.service('initiateEditor', function($http, $q){
   var tempArr = [
-    {question: 'This is the first question', fn: 'var firstQuestion = function(){}'},
-    {question: 'This is the sec question', fn: 'var secondQuestion = function(){}'},
-    {question: 'This is the third question', fn: 'var thirdQ = function(){}'},
-    {question: 'This is the fourth question', fn: 'var fourthQ = function(){}'}
+    {question: 'Have the function "reverse" take a string as the parameter and return that string after it\'s been reversed', fn: 'var reverse = function(str){\n\n}', answer: 'rewsna eht si siht'},
+    {question: 'Have the function "longest" take a string as the parameter and returns the longest word in that string.', fn: 'var longest = function(str){\n\n}', answer: 'spaceship'}
   ];
 
-  var getRandomInt = function(min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  var questions = {};
 
-  var getInitialQuestion = function(data){
-    var randomInt = getRandomInt(0, data.length);
-    return data[randomInt];
+  this.setQuestionData = function(data){
+    questions.data = data;
   }
 
   this.getRandomQuestion = function(){
@@ -23,17 +18,18 @@ app.service('initiateEditor', function($http, $q){
     return data[randomInt];
   };
 
-  this.makeRequest = function(){
+  this.getQuestions = function(){
     var d = $q.defer();
     $http({
       method: 'GET',
       url: '#'
     }).success(function(data){
-      //change and remove tempArr once actual data is retrieved.
-      var randomQuestion = getInitialQuestion(tempArr);
-      d.resolve(randomQuestion);
+      // d.resolve(data);
+
+      //change to data and remove tempArr once actual data is retrieved.
+      d.resolve(tempArr);
     }).error(function(){
-      d.resolve('There was an error in initiateEditor');
+      d.error('There was an error retrieving the questions');
     });
     return d.promise;
   }

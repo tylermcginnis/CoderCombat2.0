@@ -12,7 +12,7 @@ server.listen(port);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.sockets.on('connection', function (socket) {
-  gameLogic.initUser(socket, 'Tyler');
+  gameLogic.initUser(socket, io, 'Tyler');
 
   socket.on('userChangedEditor', function(newText){
     gameLogic.sendTextUpdate(socket, newText);

@@ -7,6 +7,7 @@ app.directive('userEditor', function(socket){
     link: function(scope, ele, attr) {  
       var editor = ace.edit("uEditor");
       editor.setTheme("ace/theme/eclipse");
+      editor.setFontSize(19);
 
       var session = editor.getSession();
       session.setUseWrapMode(true);
@@ -19,9 +20,14 @@ app.directive('userEditor', function(socket){
 
       scope.editor = editor;
 
-      scope.chainedPromise.then(function(){
-        session.setValue(scope.data.fn);
+      socket.on('initializeQuestion', function(data){
+        scope.data.question = data.question;
+        session.setValue(data.fn);
       });
+
+      // scope.chainedPromise.then(function(){
+      //   session.setValue(scope.data.fn);
+      // });
     }
   }
 });
