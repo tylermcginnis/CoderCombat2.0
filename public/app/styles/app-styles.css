@@ -82,7 +82,10 @@ html, body {
   font-size: 29px;
   font-weight: 200;
 }
-
+body .modal-content {
+  box-shadow: 0 0 0 0;
+  border: 0;
+}
 
 /* Spinner */
 .spinner {
