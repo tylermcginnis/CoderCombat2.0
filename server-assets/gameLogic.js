@@ -38,7 +38,7 @@ module.exports.initUser = function(socket, io, name, questionArrLength){
   placeInRoom(socket, io, questionArrLength);
 };
 
-module.exports.leaveRoom = function(skt){
+module.exports.leaveRoom = function(skt, io, questionArrLength){
   var room = users[skt.id].room;
   var userName = users[skt.id].name;
   delete users[skt.id];
@@ -53,7 +53,7 @@ module.exports.leaveRoom = function(skt){
     skt.broadcast.to(room).emit('cleanEditor');
     skt.leave(room);
     delete rooms[room];
-    placeInRoom(opponentSocket);
+    placeInRoom(opponentSocket, io, questionArrLength);
   }
 };
 

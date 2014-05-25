@@ -24,6 +24,6 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('disconnect', function(){
-    gameLogic.leaveRoom(socket);
+    gameLogic.leaveRoom(socket, io, questionData.getQuestionData().length);
   })
 });
