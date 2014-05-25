@@ -75,6 +75,7 @@ html, body {
 .modal-header img {
   width: 201px;
   margin: 0 auto;
+  display: block;
 }
 .modal-body {
   text-align: center;
