@@ -21,7 +21,7 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
       scope.editor = editor;
 
       socket.on('waitingForOpponent', function(){
-        var modalInstance = $modal.open({
+        scope.waitingForOpponentModal = $modal.open({
           templateUrl: 'js/components/modals/waitingForOpponent.html',
           controller: 'mainCtrl'
         });
