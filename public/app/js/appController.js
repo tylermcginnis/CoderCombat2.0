@@ -7,7 +7,6 @@ app.controller('mainCtrl', function($scope, socket, initiateEditor){
   });
 
   socket.on('leftRoom', function(obj){
-    console.log(obj.text);
-    alert("Someone left the room!");
+    console.log('someone left the room')
   });
 });

@@ -25,7 +25,7 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
           templateUrl: 'js/components/modals/waitingForOpponent.html',
           controller: 'mainCtrl'
         });
-      })
+      });
 
       socket.on('initializeQuestion', function(randomNum){
         initiateEditor.setUpEditor(randomNum, scope, session);

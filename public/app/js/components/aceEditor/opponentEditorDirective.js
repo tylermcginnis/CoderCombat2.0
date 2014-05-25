@@ -4,7 +4,7 @@ app.directive('opponentEditor', function(socket, initiateEditor) {
   return {
     restrict: 'E',
     template: "<p id='oEditor' class='oEditor'></p>",
-    link: function(scope, ele, attr) {  
+    link: function(scope, ele, attr) {
       var editor = ace.edit("oEditor");
       editor.setTheme("ace/theme/eclipse");
       editor.setReadOnly(true);
@@ -15,12 +15,14 @@ app.directive('opponentEditor', function(socket, initiateEditor) {
       session.setUseWrapMode(true);
       session.setMode("ace/mode/javascript");
 
-      editor.on('change', function(changeObj){
-        // var currentText = session.getValue();
+      editor.on('focus', function(){
+        //refactor later
+        alert('No one likes a cheater');
       });
 
-      editor.on('focus', function(){
-        
+      editor.on('copy', function(){
+        //refactor later
+        alert('No one likes a cheater');
       });
 
       socket.on('updateText', function (newTxt) {
