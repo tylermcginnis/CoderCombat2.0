@@ -24,6 +24,10 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
 
       scope.editor = editor;
 
+      scope.returnEditorText = function(){
+        return session.getValue();
+      }
+
       socket.on('waitingForOpponent', function(){
         scope.waitingForOpponentModal = $modal.open({
           templateUrl: 'js/components/modals/waitingForOpponent.html',

@@ -15,7 +15,7 @@
           </button>
           <a class="navbar-brand pull-left" href="/"><img src="images/coder-combat-small.png"></a>
           <ul class="nav navbar-nav">
-            <li class=""><a ng-class="{'mute': !highlightSubmit, 'not-mute': highlightSubmit}" href="#"><span class="glyphicon glyphicon-play"></span> Submit</a></li>
+            <li><a ng-click="checkAnswer()" ng-disabled="true" ng-class="{'mute': !highlightSubmit, 'not-mute': highlightSubmit}" href="#"><span class="glyphicon glyphicon-play"></span> Submit</a></li>
           </ul>
         </div>
         <div class="navbar-collapse collapse">
@@ -34,7 +34,7 @@
         </div>
         <div class="right-side pull-right">
           <div class="question question-container">
-            {{data.question}}
+            {{questionData.question}}
           </div>
           <div class="opponents-editor">
             <opponent-editor>

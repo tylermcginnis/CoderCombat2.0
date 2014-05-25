@@ -54,15 +54,11 @@ html, body{
   margin: 30px auto;
 }
 
-.l-gray {
-  background: #dbdbdb
-}
-
 .l-gray:hover {
   background: rgba(219, 219, 219, 0.85);
 }
 
-.l-gray a {
-  color: #777;
+.btn-success a{
+  color: #fff;
   text-decoration: none;
 }

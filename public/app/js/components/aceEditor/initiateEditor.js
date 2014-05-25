@@ -2,6 +2,7 @@ var app = angular.module('CC');
 
 app.service('initiateEditor', function($http, $q){
   var questions = {};
+  var singleQuestion = {};
 
   this.setQuestionData = function(data){
     questions.data = data;
@@ -25,13 +26,25 @@ app.service('initiateEditor', function($http, $q){
   };
 
   this.setUpEditor = function(randomNum, scope, session){
-    var questionData = this.getRandomQuestion(randomNum);
-    scope.data.question = questionData.question;
-    session.setValue(questionData.fn);
+    scope.questionData = this.getRandomQuestion(randomNum);
+    singleQuestion = scope.questionData;
+    session.setValue(scope.questionData.fn);
   };
 
   this.clearEditor = function(scope, session){
-    scope.data = {};
+    scope.questionData = {};
+    singleQuestion = {};
     session.setValue('');
+  };
+
+  this.validateCode = function(submittedCode){
+    var userFn = submittedCode;
+    modifiedUserFn = '(' + userFn + '( "' + singleQuestion.parameter + '"))';
+    var result = eval(modifiedUserFn);
+    if(result === singleQuestion.answer){
+      alert('right answer');
+    } else {
+      alert('wrong answer');
+    }
   }
 });

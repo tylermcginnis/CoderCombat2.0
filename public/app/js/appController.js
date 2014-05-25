@@ -2,6 +2,10 @@ var app = angular.module('CC');
 app.controller('mainCtrl', function($scope, socket, initiateEditor){
   $scope.data = {};
 
+  $scope.checkAnswer = function(){
+    initiateEditor.validateCode($scope.returnEditorText());
+  };
+
   socket.on('joinedRoom', function(obj){
     console.log('someone joined the room');
     $scope.waitingForOpponentModal && $scope.waitingForOpponentModal.close();
