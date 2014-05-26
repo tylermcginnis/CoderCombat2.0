@@ -1,9 +1,20 @@
 var app = angular.module('CC');
-app.controller('mainCtrl', function($scope, socket, initiateEditor){
+app.controller('mainCtrl', function($scope, socket, $timeout, initiateEditor){
   $scope.data = {};
 
   $scope.checkAnswer = function(){
-    initiateEditor.validateCode($scope.returnEditorText());
+    if(initiateEditor.validateCode($scope.returnEditorText())){
+      socket.emit('showWinnerModal');
+      socket.emit('clearAllEditors');
+      socket.emit('showLoserModal');
+      $timeout(function(){
+        socket.emit('initializeNewQuestion');
+        $scope.winnerModal && $scope.winnerModal.close();
+        socket.emit('closeLoserModal');
+      }, 5000);
+    } else {
+      alert('wrong')
+    }
   };
 
   socket.on('joinedRoom', function(obj){

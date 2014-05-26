@@ -1,6 +1,6 @@
 var app = angular.module('CC');
 
-app.service('initiateEditor', function($http, $q){
+app.service('initiateEditor', function($http, $q, socket){
   var questions = {};
   var singleQuestion = {};
 
@@ -25,16 +25,18 @@ app.service('initiateEditor', function($http, $q){
     return d.promise;
   };
 
-  this.setUpEditor = function(randomNum, scope, session){
+  this.setUpEditor = function(randomNum, scope){
     scope.questionData = this.getRandomQuestion(randomNum);
     singleQuestion = scope.questionData;
-    session.setValue(scope.questionData.fn);
+    scope.userSession.setValue(scope.questionData.fn);
+    scope.oppSession.setValue(scope.questionData.fn);
   };
 
-  this.clearEditor = function(scope, session){
+  this.clearEditor = function(scope){
     scope.questionData = {};
     singleQuestion = {};
-    session.setValue('');
+    scope.oppSession.setValue('');
+    scope.userSession.setValue('');
   };
 
   this.validateCode = function(submittedCode){
@@ -42,9 +44,9 @@ app.service('initiateEditor', function($http, $q){
     modifiedUserFn = '(' + userFn + '( "' + singleQuestion.parameter + '"))';
     var result = eval(modifiedUserFn);
     if(result === singleQuestion.answer){
-      alert('right answer');
+      return true;
     } else {
-      alert('wrong answer');
+      return false
     }
   }
 });

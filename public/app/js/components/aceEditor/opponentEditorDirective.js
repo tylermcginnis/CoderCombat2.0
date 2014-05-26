@@ -14,6 +14,7 @@ app.directive('opponentEditor', function(socket, initiateEditor) {
       var session = editor.getSession();
       session.setUseWrapMode(true);
       session.setMode("ace/mode/javascript");
+      scope.oppSession = session;
 
       editor.on('focus', function(){
         //refactor later
@@ -32,11 +33,11 @@ app.directive('opponentEditor', function(socket, initiateEditor) {
       scope.oEditor = editor;
 
       socket.on('initializeQuestion', function(randomNum){
-        initiateEditor.setUpEditor(randomNum, scope, session);
+        initiateEditor.setUpEditor(randomNum, scope);
       });
 
       socket.on('cleanEditor', function(){
-        initiateEditor.clearEditor(scope, session);
+        initiateEditor.clearEditor(scope);
       });
     }
   }

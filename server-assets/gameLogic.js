@@ -18,6 +18,26 @@ var joinRoom = function(skt, io, rm, questionArrLength){
   } else {
     io.sockets.socket(skt.id).emit('waitingForOpponent');
   }
+
+  skt.on('clearAllEditors', function(){
+    io.sockets.in(rm).emit('cleanEditor');
+  });
+
+  skt.on('showWinnerModal', function(){
+    io.sockets.socket(skt.id).emit('openWinnerModal');
+  });
+
+  skt.on('showLoserModal', function(){
+    skt.broadcast.emit('openLoserModal')
+  });
+
+  skt.on('initializeNewQuestion', function(){
+    io.sockets.in(rm).emit('initializeQuestion', returnRandomInt(0, questionArrLength -1));
+  });
+
+  skt.on('closeLoserModal', function(){
+    skt.broadcast.to(rm).emit('destroyLoserModal');
+  });
 };
 
 var placeInRoom = function(skt, io, questionArrLength){

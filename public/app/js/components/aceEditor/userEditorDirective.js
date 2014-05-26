@@ -17,6 +17,7 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
         var currentText = session.getValue();
         socket.emit('userChangedEditor', currentText);
       });
+      scope.userSession = session;
 
       editor.on('focus', function(){
         scope.$apply(scope.highlightSubmit = true);
@@ -28,6 +29,24 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
         return session.getValue();
       }
 
+      socket.on('openWinnerModal', function(){
+        scope.winnerModal = $modal.open({
+          templateUrl: 'js/components/modals/winnerModal.html',
+          controller: 'mainCtrl'
+        });
+      });
+
+      socket.on('openLoserModal', function(){
+        scope.loserModal = $modal.open({
+          templateUrl: 'js/components/modals/loserModal.html',
+          controller: 'mainCtrl'
+        });
+      });
+
+      socket.on('destroyLoserModal', function(){
+        scope.loserModal.close();
+      })
+
       socket.on('waitingForOpponent', function(){
         scope.waitingForOpponentModal = $modal.open({
           templateUrl: 'js/components/modals/waitingForOpponent.html',
@@ -37,12 +56,14 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
 
       socket.on('initializeQuestion', function(randomNum){
         scope.highlightSubmit = false;
-        initiateEditor.setUpEditor(randomNum, scope, session);
+        initiateEditor.setUpEditor(randomNum, scope);
       });
 
       socket.on('cleanEditor', function(){
-        initiateEditor.clearEditor(scope, session);
+        initiateEditor.clearEditor(scope);
       });
+
+
     }
   }
 });
