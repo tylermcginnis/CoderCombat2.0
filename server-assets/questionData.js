@@ -33,7 +33,7 @@ var questionData = [
     question: 'Have the function "titleMaker" take a string and return that string after capitalizing the first letter in every word.',
     fn: 'function titleMaker(str){\n\n}',
     parameter: 'peter piper picked peppers and run rocked rhymes',
-    answer: 'Peter Piper Picked Peppers and Run Rocked Rhymes'
+    answer: 'Peter Piper Picked Peppers And Run Rocked Rhymes'
   }
 ];
 

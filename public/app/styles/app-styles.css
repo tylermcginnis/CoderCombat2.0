@@ -151,6 +151,12 @@ body .modal-content {
 @-ms-keyframes expand {from {-ms-transform: scale(1);}to {-webkit-transform: scale(1.5);}}
 
 
+.inner-timer {
+  text-align: center;
+  font-size: 50px;
+  margin-top: 20px;
+}
+
 /* Ace Editor Overrides */
 .ace_editor {
   height: 100%;

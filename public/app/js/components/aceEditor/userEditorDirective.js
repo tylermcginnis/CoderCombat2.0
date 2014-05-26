@@ -1,6 +1,6 @@
 var app = angular.module('CC');
 
-app.directive('userEditor', function(socket, initiateEditor, $modal){
+app.directive('userEditor', function(socket, initiateEditor, $modal, $modalStack){
   return {
     restrict: 'E',
     template: "<p id='uEditor'></p>",
@@ -30,6 +30,7 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
       }
 
       socket.on('openWinnerModal', function(){
+        $modalStack.dismissAll();
         scope.winnerModal = $modal.open({
           templateUrl: 'js/components/modals/winnerModal.html',
           controller: 'mainCtrl'
@@ -37,6 +38,7 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
       });
 
       socket.on('openLoserModal', function(){
+        $modalStack.dismissAll();
         scope.loserModal = $modal.open({
           templateUrl: 'js/components/modals/loserModal.html',
           controller: 'mainCtrl'
@@ -44,7 +46,8 @@ app.directive('userEditor', function(socket, initiateEditor, $modal){
       });
 
       socket.on('destroyLoserModal', function(){
-        scope.loserModal.close();
+        scope.loserModal && scope.loserModal.close();
+        $modalStack.dismissAll();
       })
 
       socket.on('waitingForOpponent', function(){
