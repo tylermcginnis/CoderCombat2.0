@@ -49,9 +49,15 @@ html, body{
   width: 100%;
 }
 
+.up {
+  position: relative;
+  bottom: 40px;
+}
+
 .space {
-  width: 290px;
-  margin: 30px auto;
+  /*width: 290px;*/
+  width: 148px;
+  margin: 0px auto;
 }
 
 .l-gray:hover {
